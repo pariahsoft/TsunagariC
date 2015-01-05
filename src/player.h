@@ -1,7 +1,7 @@
 /***************************************
 ** Tsunagari Tile Engine              **
 ** player.h                           **
-** Copyright 2011-2013 PariahSoft LLC **
+** Copyright 2011-2014 PariahSoft LLC **
 ***************************************/
 
 // **********
@@ -27,14 +27,15 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include <memory>
 #include <vector>
 
-#include "character.h"
 #include "vec.h"
 
+class Character;
 class Exit;
 
-class Player : public Character
+class Player
 {
 public:
 	static Player& instance();
@@ -61,6 +62,8 @@ protected:
 	void takeExit(Exit* exit);
 
 private:
+	std::weak_ptr<Character> ch;
+
 	//! Stores intent to move continuously in some direction.
 	ivec2 velocity;
 
